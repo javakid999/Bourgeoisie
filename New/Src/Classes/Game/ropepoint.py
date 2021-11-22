@@ -19,4 +19,5 @@ class RopePoint:
                     self.position = pygame.Vector2.__add__(self.position, pygame.Vector2(-0.1, 0))
             self.prev_position = position_before_update
     def render():
+        # Add render function
         pass

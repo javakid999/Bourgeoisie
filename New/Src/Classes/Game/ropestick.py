@@ -14,3 +14,4 @@ class RopeStick:
             self.b.position = pygame.Vector2.__sub__(pygame.Vector2.__mul__(pygame.Vector2.__mul__(stick_dir, self.length), 0.5), stick_center)
     def render():
         pass
+        # Add render function

@@ -1,5 +1,8 @@
 import pygame, sys
+
+from pygame import mouse
 from Classes.Game.player import Player
+from Classes.Game.gun import Gun
 from Utils.loadmap import load_map, transcribe_map, render_map, get_tiles
 pygame.init()
 
@@ -19,13 +22,17 @@ keys = {
 map = load_map('D:\Bourgeoisie\\New\Maps\\test')
 tmap = transcribe_map(map)
 player = Player(pygame.Vector2(100,20))
+gun = Gun(pygame.Vector2(100,20))
 
 while True:
     display.fill((200,180,255))
     tiles = get_tiles(map)
+    mouse_pos = pygame.mouse.get_pos()
     render_map(display, tmap, {'bird':0})
     player.update(keys, tiles)
+    gun.update(player, (mouse_pos[0], mouse_pos[1]))
     player.render(display)
+    gun.render(display)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

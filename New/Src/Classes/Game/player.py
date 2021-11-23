@@ -25,12 +25,12 @@ class Player:
         rect.x += self.movement[0]
         hit_list = self.collide_tiles(tiles)[0]
         for tile in hit_list:
-            if self.movement[0] > 0:
-                rect.right = tile.left
-                collision_types['right'] = True
-            elif self.movement[0] < 0:
+            if self.movement[0] < 0:
                 rect.left = tile.right
                 collision_types['left'] = True
+            elif self.movement[0] > 0:
+                rect.right = tile.left
+                collision_types['right'] = True
 
         rect.y += self.movement[1]
         hit_list = self.collide_tiles(tiles)[0]
@@ -49,11 +49,11 @@ class Player:
         return collision_types, rect
 
     def update(self, keys, tiles):
-        self.movement = [0,0]
-        if keys['right']:
-            self.velocity.x += 0.25
+        self.movement = [0.0, 0.0]
         if keys['left']:
-            self.velocity.x -= 0.25
+            self.velocity.x -= 0.2
+        if keys['right']:
+            self.velocity.x += 0.2
         if keys['up'] and self.air_time < 5:
             self.velocity.y = -4
         self.movement = [self.movement[0] + self.velocity.x, self.movement[1] + self.velocity.y]
@@ -63,4 +63,6 @@ class Player:
 
         self.velocity.y += 0.5
         self.velocity.x *= 0.9
+        self.movement[0] = round(self.movement[0])
+        self.velocity.x = round(self.velocity.x * 100) / 100
         self.rect = self.collide(tiles)[1]

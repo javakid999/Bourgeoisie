@@ -10,6 +10,6 @@ class Rope:
             point.update(player)
           for stick in self.sticks:
             stick.update()
-    def render(self, display):
+    def render(self, display, camera):
         for stick in self.sticks:
-            stick.render(display, self.color)
+            stick.render(display, self.color, camera)

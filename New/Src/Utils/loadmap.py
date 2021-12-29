@@ -21,13 +21,13 @@ def transcribe_map(map):
                 transcribed_map[i][j] = Bird(pygame.Vector2(j * 16, i * 16))
     return transcribed_map
 
-def render_map(display, tmap, assets):
+def render_map(display, tmap, assets, camera):
     for i, row in enumerate(tmap):
         for j, tile in enumerate(row):
             if tmap[i][j] == '1':
-                pygame.draw.rect(display, (0,0,0), pygame.Rect(j * 16, i * 16, 16, 16))
+                pygame.draw.rect(display, (0,0,0), pygame.Rect(camera.correct(j * 16, i * 16)[0], camera.correct(j * 16, i * 16)[1], 16, 16))
             if isinstance(tmap[i][j], Bird):
-                tmap[i][j].render(display, assets['bird'])
+                tmap[i][j].render(display, assets['bird'], camera)
 
 def get_tiles(map):
     tile_rects = []

@@ -2,7 +2,6 @@
 [ Render Gun ]
 [ Firing Bullets ]
 [ Make Levels ]
-[ Camera System ]
 [ More Art ]
 [ Make Sounds ]
 [ Boss Fight(s?) ]

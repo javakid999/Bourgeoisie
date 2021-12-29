@@ -15,8 +15,8 @@ class Player:
                 hit_list.append(tile)
         return [hit_list, hit_list == []]
 
-    def render(self, display):
-        pygame.draw.rect(display, (255,0,0), self.rect)
+    def render(self, display, camera):
+        pygame.draw.rect(display, (255,0,0), (camera.correct(self.rect.left, self.rect.top)[0], camera.correct(self.rect.left, self.rect.top)[1], 16, 16))
 
     def collide(self, tiles):
         collision_types = {'left': False, 'right': False, 'top': False, 'bottom': False}
